@@ -6,7 +6,7 @@ import { db } from './db';
 import { createApolloServer } from './apollo';
 import { NODE_ENV, PORT } from './env';
 
-(async () => {
+export default (async () => {
     const app = express();
     const apollo = await createApolloServer();
 
@@ -20,5 +20,13 @@ import { NODE_ENV, PORT } from './env';
     await db.initialize();
     apollo.applyMiddleware({ app, path: '/' });
 
-    app.listen(PORT, () => console.log(`Приложение запущено на ${PORT} порту`));
+    app.get('/test', (req, res) => {
+        res.send('Привет Мир!');
+    });
+
+    if (NODE_ENV !== 'production') {
+        app.listen(PORT, () => console.log(`Приложение запущено на ${PORT} порту`));
+    }
+
+    return app;
 })();
