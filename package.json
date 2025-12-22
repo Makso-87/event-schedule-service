@@ -4,8 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "test",
-        "start": "ts-node-dev src/index.ts"
+        "start": "node dist/index.js",
+        "build": "tsc --project tsconfig.json",
+        "service": "ts-node-dev src/index.ts"
     },
     "author": "Maksim Popov",
     "license": "ISC",
