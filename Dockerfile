@@ -6,6 +6,8 @@ RUN npm install --production --silent && mv node_modules ../
 COPY . .
 ARG PORT
 ENV PORT=$PORT
+ARG NODE_ENV
+ENV NODE_ENV=$NODE_ENV
 ARG DB_PORT
 ENV DB_PORT=$DB_PORT
 ARG DB_HOST
