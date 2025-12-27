@@ -6,7 +6,12 @@
     "scripts": {
         "start": "node dist/index.js",
         "build": "tsc --project tsconfig.json",
-        "service": "ts-node-dev src/index.ts"
+        "service": "ts-node-dev src/index.ts",
+        "typeorm": "ts-node ./node_modules/typeorm/cli",
+        "db:migration:create_example": "npm run typeorm -- migration:generate -d src/db.ts ./src/migrations/MigrationNameHere",
+        "db:migration:generate_example": "npm run typeorm -- migration:generate -d src/db.ts ./src/migrations/UserEmailVerified",
+        "db:migration:run": "npm run typeorm migration:run -- -d ./src/db.ts",
+        "db:migration:revert": "npm run typeorm migration:revert -- -d ./src/db.ts"
     },
     "author": "Maksim Popov",
     "license": "ISC",
