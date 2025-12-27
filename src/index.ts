@@ -6,7 +6,7 @@ import { db } from './db';
 import { createApolloServer } from './apollo';
 import { NODE_ENV, PORT } from './env';
 
-(async () => {
+export default (async () => {
     const app = express();
     const apollo = await createApolloServer();
 
