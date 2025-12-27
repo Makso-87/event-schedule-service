@@ -7,6 +7,8 @@ export const createApolloServer = async () => {
         context: ({ req, res }: TGraphQLContext) => {
             return { req, res };
         },
+        cache: 'bounded',
+        persistedQueries: false,
     });
 
     await apollo.start();
