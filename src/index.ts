@@ -20,5 +20,9 @@ import { NODE_ENV, PORT } from './env';
     await db.initialize();
     apollo.applyMiddleware({ app, path: '/' });
 
+    app.get('/health-check', (req, res) => {
+        res.send('Харе Кришна! Всё харишо, работаем!');
+    });
+
     app.listen(PORT, () => console.log(`Приложение запущено на ${PORT} порту`));
 })();
