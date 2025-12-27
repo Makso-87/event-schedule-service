@@ -20,13 +20,9 @@ export default (async () => {
     await db.initialize();
     apollo.applyMiddleware({ app, path: '/' });
 
-    app.get('/test', (req, res) => {
-        res.send('Привет Мир!');
+    app.get('/health-check', (req, res) => {
+        res.send('Харе Кришна! Всё харишо, работаем!');
     });
 
-    if (NODE_ENV !== 'production') {
-        app.listen(PORT, () => console.log(`Приложение запущено на ${PORT} порту`));
-    }
-
-    return app;
+    app.listen(PORT, () => console.log(`Приложение запущено на ${PORT} порту`));
 })();
