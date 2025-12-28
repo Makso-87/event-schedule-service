@@ -3,3 +3,4 @@ node_modules
 dist
 .env
 docker-run-command.sh
+src/createUser.ts
