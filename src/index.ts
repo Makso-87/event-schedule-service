@@ -18,7 +18,7 @@ export default (async () => {
     // app.use(graphqlUploadExpress());
 
     await db.initialize();
-    apollo.applyMiddleware({ app, path: '/' });
+    apollo.applyMiddleware({ app, path: '/api' });
 
     app.get('/health-check', (req, res) => {
         res.send('Харе Кришна! Всё харишо, работаем!');
