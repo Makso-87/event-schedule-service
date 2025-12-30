@@ -5,3 +5,5 @@ export const { DB_LOGIN } = process.env;
 export const { DB_PASSWORD } = process.env;
 export const { DB_NAME } = process.env;
 export const { JWT_SECRET } = process.env;
+export const { SSL_KEY_PATH } = process.env;
+export const { SSL_CERT_PATH } = process.env;
