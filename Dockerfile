@@ -5,6 +5,8 @@ COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install --production --silent && mv node_modules ../
 COPY . .
 
+RUN mkdir -p /usr/src/app/certs
+
 ARG PORT
 ENV PORT=$PORT
 
@@ -28,12 +30,6 @@ ENV DB_NAME=$DB_NAME
 
 ARG JWT_SECRET
 ENV JWT_SECRET=$JWT_SECRET
-
-ARG SSL_KEY_PATH
-ENV SSL_KEY_PATH=$SSL_KEY_PATH
-
-ARG SSL_CERT_PATH
-ENV SSL_CERT_PATH=$SSL_CERT_PATH
 
 EXPOSE 16108
 

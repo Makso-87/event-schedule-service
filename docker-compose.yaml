@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  event-service:
+    build: .
+    ports:
+      - '${PORT}:${PORT}'
+    volumes:
+      - /etc/letsencrypt/live/calendar-service.afisha-hk.ru:/usr/src/app/certs:ro
+    env_file:
+        ./.env
+    restart: unless-stopped
