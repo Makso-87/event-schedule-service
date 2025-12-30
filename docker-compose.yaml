@@ -1,11 +1,11 @@
-version: '3.8'
 services:
   event-service:
     build: .
     ports:
       - '${PORT}:${PORT}'
     volumes:
-      - /etc/letsencrypt/live/calendar-service.afisha-hk.ru:/usr/src/app/certs:ro
+      - /etc/letsencrypt/live/calendar-service.afisha-hk.ru/privkey.pem:/usr/src/app/certs/privkey.pem:ro
+      - /etc/letsencrypt/live/calendar-service.afisha-hk.ru/fullchain.pem:/usr/src/app/certs/fullchain.pem:ro
     env_file:
         ./.env
     restart: unless-stopped
