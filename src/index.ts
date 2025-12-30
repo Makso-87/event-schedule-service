@@ -1,13 +1,14 @@
 import 'reflect-metadata';
 import 'dotenv/config';
 import type { SecureVersion } from 'node:tls';
+import path from 'path';
 import https, { ServerOptions } from 'node:https';
 import { readFileSync } from 'node:fs';
 import express, { json } from 'express';
 import cors from 'cors';
 import { db } from './db';
 import { createApolloServer } from './apollo';
-import { NODE_ENV, PORT, SSL_CERT_PATH, SSL_KEY_PATH } from './env';
+import { NODE_ENV, PORT } from './env';
 
 (async () => {
     const app = express();
@@ -29,8 +30,8 @@ import { NODE_ENV, PORT, SSL_CERT_PATH, SSL_KEY_PATH } from './env';
 
     if (NODE_ENV === 'production') {
         const sslOptions: ServerOptions = {
-            key: readFileSync('../certs/privkey.pem'),
-            cert: readFileSync('../certs/fullchain.pem'),
+            key: readFileSync(path.join(__dirname, '..', '/certs/privkey.pem')),
+            cert: readFileSync(path.join(__dirname, '..', '/certs/fullchain.pem')),
             minVersion: 'TLSv1.3' as SecureVersion,
             honorCipherOrder: true,
         };
