@@ -29,8 +29,8 @@ import { NODE_ENV, PORT, SSL_CERT_PATH, SSL_KEY_PATH } from './env';
 
     if (NODE_ENV === 'production') {
         const sslOptions: ServerOptions = {
-            key: readFileSync(SSL_KEY_PATH),
-            cert: readFileSync(SSL_CERT_PATH),
+            key: readFileSync('../certs/privkey.pem'),
+            cert: readFileSync('../certs/fullchain.pem'),
             minVersion: 'TLSv1.3' as SecureVersion,
             honorCipherOrder: true,
         };
