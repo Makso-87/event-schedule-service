@@ -1,9 +1,5 @@
 import 'reflect-metadata';
 import 'dotenv/config';
-import type { SecureVersion } from 'node:tls';
-import path from 'path';
-import https, { ServerOptions } from 'node:https';
-import { readFileSync } from 'node:fs';
 import express, { json } from 'express';
 import cors from 'cors';
 import { db } from './db';
@@ -28,20 +24,5 @@ import { NODE_ENV, PORT } from './env';
         res.send('Харе Кришна! Всё харишо, работаем!');
     });
 
-    if (NODE_ENV === 'production') {
-        const sslOptions: ServerOptions = {
-            key: readFileSync(path.join(__dirname, '..', '/certs/privkey.pem')),
-            cert: readFileSync(path.join(__dirname, '..', '/certs/fullchain.pem')),
-            minVersion: 'TLSv1.3' as SecureVersion,
-            honorCipherOrder: true,
-        };
-
-        const httpsServer = https.createServer(sslOptions, app);
-
-        httpsServer.listen(Number(PORT), '0.0.0.0', () => {
-            console.log(`🚀 Сервис запущен на ${PORT} порту`);
-        });
-    } else {
-        app.listen(PORT, () => console.log(`🚀 Сервис запущен на ${PORT} порту`));
-    }
+    app.listen(PORT, () => console.log(`🚀 Сервис запущен на ${PORT} порту`));
 })();
