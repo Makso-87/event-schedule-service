@@ -8,7 +8,10 @@ import { EventCategory } from '../entities/EventCategory';
 export class EventResolver {
     @Query(() => [Event])
     async events() {
-        return db.manager.find(Event, { relations: { category: { events: true } } });
+        return db.manager.find(Event, {
+            relations: { category: { events: true } },
+            order: { startDate: 'ASC', startTime: 'ASC' },
+        });
     }
 
     @Authorized()
